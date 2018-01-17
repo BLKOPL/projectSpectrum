@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Spectrum</title>
+
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+  <body>
+
+
+<div class=" float-md-center">
+        <h1 class="display-3">Spectrum</h1>
+</div>
+
+<form>
+  <div class="form-group">
+    <!-- <label for="formLabel">"label"</label> -->
+   <input type="text" id="searchBar" class="form-control" placeholder=" Keyword Search ">
+
+</div>
+</form>
+
+<button type="submit" id="submitBtn" class="btn btn-primary submit">Submit</button>
+
+<div class="card float-md-center" id="recentsearches">
+  <div class="card-body" id="keywords">
+    <h4 class="card-title">Recent Searches:</h4>
+    <a href="#" class="card-link">"Article Link"</a>
+    <a href="#" class="card-link">"Article Link"</a>
+  </div>
+</div>
+
+<div class="container spectrum">
+  <div class="row">
+    <div class="col">
+  <img src="assets/images/spectrum.png">
+  </div>
+</div>
+</div>
+
+<div class="card-deck">
+  <div class="card">
+   <div class="card-body text-primary" id="blue-1">
+     <h4 class="card-title">New York Times</h4>
+      <p class="card-text"><small class="text-muted">"Insert Date and Time of Article"</small></p>
+      <div id="display-blue-article" class="card-body"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body text-primary" id="neutral">
+      <h4 class="card-title">Wall Street Journal</h4>
+      <p class="card-text"><small class="text-muted">"Insert Date and Time of Article"</small></p>
+      <div id="display-neutral-article" class="card-body"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body text-primary" id="red-1">
+      <h4 class="card-title">Brietbart News Network</h4>
+      <p class="card-text"><small class="text-muted">"Insert Date and Time of Article"</small></p>
+      <div id="display-red-article" class="card-body"></div>
+    </div>
+  </div>
+</div>
+
+<table class="table">
+<tbody>
+    <tr class="table-active">
+      <td>New York Times</td>
+      <td>Wall Street Journal</td>
+      <td>Brietbart News Network</td>
+    </tr>
+ </tbody>
+</table>
+
+
+<footer class="footer">
+  <div class="container">
+  <span>Copyright &copy; 2018</span>
+  </div>
+</footer>
+
+
+<script src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/script.js"></script>
+
+
+  </body>
+</html>
