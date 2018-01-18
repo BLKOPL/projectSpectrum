@@ -1,14 +1,13 @@
 //API call for NYT////////////////////////////////////////////
-var Search_item
+var userInput
 var LinktoArticle
 
 function reachNYTapi(){
 
-Search_item=$("#searchBar").val().trim();
-if (Search_item){
+// if (userInput){
  // If search item is Nan this will not let the user click submit
-console.log(Search_item);
-var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=9bbd8167715c47cf98ffd217a669c995&sort=newest&q=" + Search_item ;
+console.log(userInput);
+var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=9bbd8167715c47cf98ffd217a669c995&sort=newest&q=" + userInput ;
 
     $.ajax({
       url: queryURL,
@@ -35,7 +34,7 @@ var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key
 
     });
 }
-}
+// }
 ////////////////////////////////////////////////////////////
 
 
@@ -44,10 +43,10 @@ var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key
 
 //API call for WSJ////////////////////////////////////
 
-var userInput = $("#searchBar").val().trim();
+
 
 function reachWSJapi(){
-
+ // userInput = $("#searchBar").val().trim();
 
 var queryURLWSJ = 'https://newsapi.org/v2/everything?' +
          'q=' + userInput + '&' +
@@ -79,6 +78,7 @@ var queryURLWSJ = 'https://newsapi.org/v2/everything?' +
 
 
      });
+
 }
 ///////////////////////////////////////////////////////
 
@@ -88,6 +88,7 @@ var queryURLWSJ = 'https://newsapi.org/v2/everything?' +
 
 //API call for BB/////////////////////////////////////
 function reachBBapi(){
+// userInput=$("#searchBar").val().trim();
 
 var queryURLBreitbart = 'https://newsapi.org/v2/everything?' +
          'q=' + userInput + '&' +
@@ -129,10 +130,12 @@ var queryURLBreitbart = 'https://newsapi.org/v2/everything?' +
 $("#submitBtn").on("click", function(event){
 event.preventDefault();
 
+userInput=$("#searchBar").val().trim();
+if (userInput){
 reachNYTapi();
 reachWSJapi();
 reachBBapi();
-
+}
 
 });
 
