@@ -52,7 +52,6 @@ function reachWSJapi(){
 var queryURLWSJ = 'https://newsapi.org/v2/everything?' +
          'q=' + userInput + '&' +
          'sources=' + 'the-wall-street-journal' + '&' +
-         'from=2018-01-15&' + //change date with moment
          'sortBy=popularity&' +
          'apiKey=29a6e2a1dcf34cc9a4528d592d8b5ed8';
 
