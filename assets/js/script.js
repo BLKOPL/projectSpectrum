@@ -6,8 +6,10 @@ var NytHeader
 var WsjHeader
 var BbHeader
 var nYT_articleImage
-  var nyt_snipit
-  var NytData  // nyt Respo
+var nyt_snipit
+var NytData // nyt Respo
+
+var currentDiv // current div the image is clicked on
 
 
 
@@ -25,10 +27,7 @@ function reachNYTapi() {
       })
       .done(function(NYTresponse) {
         // console.log(NYTresponse.response.docs);
-        // my var called NytData holds the result/////////////////////
-          // updating
-
-         NytData = NYTresponse.response.docs;
+        NytData = NYTresponse.response.docs;
         // console.log(NytData);
 
         // forloop that will display the 5 headers.
@@ -36,25 +35,22 @@ function reachNYTapi() {
 
         for (i = 0; i < 5; i++) {
 
-            // article link for read more
-    // console.log(nytArticleLink);
+          // article link for read more
+          // console.log(nytArticleLink);
           var nytArticleLink = NYTresponse.response.docs[i].web_url;
-
-
-                    // console.log(nytArticleTitles);
+          // console.log(nytArticleTitles);
           var nytArticleTitles = NYTresponse.response.docs[i].headline.main;
 
           // date and time //
-          var publishedAt  =NYTresponse.response.docs[i].pub_date
+          var publishedAt = NYTresponse.response.docs[i].pub_date
 
-           nYT_articleImage = "http://www.nytimes.com/" + NYTresponse.response.docs[i].multimedia.url;
           // console.log(nYT_articleImage);
 
           articleCounter++;
 
           // maybe add a class on each list item and use on click function later on and say this.
 
-           NytHeader = "<a onClick='displayNYTsection4(" + i + ")' href='#' ><li class='Nyt_article_list list-group-item'>" + nytArticleTitles + "</li></a>";
+          NytHeader = "<a onClick='displayNYTsection4(" + i + ")' href='#' ><li class='Nyt_article_list list-group-item'>" + nytArticleTitles + "</li></a>";
 
           $("#display-blue-article").append(NytHeader);
 
@@ -81,9 +77,10 @@ function reachWSJapi() {
     $.ajax({
       url: queryURLWSJ,
       method: "GET"
-    }).done(function(response) {
-      // console.log(response);
-      if (response.articles.length == 0) {
+    }).done(function(WSJresponse) {
+      console.log(WSJresponse);
+      // console.log(articles)
+      if (WSJresponse.articles.length == 0) {
         alert(" display no article on the html for this section")
       } else {
 
@@ -91,14 +88,18 @@ function reachWSJapi() {
         $("#display-neutral-article").empty();
 
         for (i = 0; i < 5; i++) {
-          var wsjArticleTitles = response.articles[i].title;
+          var wsjArticleTitles = WSJresponse.articles[i].title;
           // console.log(wsjArticleTitles);
 
-          var wsjArticleLink = response.articles[i].url;
+          var wsjArticleLink = WSJresponse.articles[i].url;
 
           articleCounter++;
           // maybe add a class on each list item and use on click function later on and say this.
-           WsjHeader = "<a target='_blank' href='" + wsjArticleLink + "'><li class='Wsj_article_list list-group-item'>" + wsjArticleTitles + "</li></a>";
+          WsjHeader = "<a onClick='displayWSJsection4(" + i + ")' href='#' ><li class='Wsj_article_list list-group-item'>" + wsjArticleTitles + "</li></a>";
+
+
+
+
 
           $("#display-neutral-article").append(WsjHeader);
 
@@ -125,7 +126,7 @@ function reachBBapi() {
   $.ajax({
     url: queryURLBreitbart,
     method: "GET"
-  }).done(function(response) {
+  }).done(function(BBresponse) {
 
 
 
@@ -133,17 +134,20 @@ function reachBBapi() {
     $("#display-red-article").empty();
 
     for (i = 0; i < 5; i++) {
-      var bbArticleTitles = response.articles[i].title;
+      var bbArticleTitles = BBresponse.articles[i].title;
       // console.log(bbArticleTitles);
 
-      var bbArticleLink = response.articles[i].url;
+      var bbArticleLink = BBresponse.articles[i].url;
 
       // var ArticleImage ="http://www.nytimes.com/"+NYTresponse.response.docs[i].multimedia.url;
 
       articleCounter++;
       // maybe add a class on each list item and use on click function later on and say this.
 
-       BbHeader = "<a target='_blank' href='" + bbArticleLink + "' ><li class='Bb_article_list list-group-item'>" + bbArticleTitles + "</li></p></a>";
+      BbHeader = "<a onClick='displayBBsection4(" + i + ")' href='#' ><li class='Bb_article_list list-group-item'>" + bbArticleTitles + "</li></a>";
+
+
+
 
       $("#display-red-article").append(BbHeader);
 
@@ -177,58 +181,42 @@ $("#breitbartArticle").append(LinktoArticle);
 // when user clicks link show the link to section 4
 
 
-// when user clicks this api title
+// when user clicks this titleRed in section 3 - the related info for thay section will be poplated in section 4
 
 
 function displayNYTsection4(i) {
   console.log("Test")
 
-          // console.log(NYTresponse.response.docs);
-          // my var called NytData holds the result/////////////////////
-            // updating
-$("#blue_selected_article").html(NytData[i].snippet)
-
-$("#blue_selected_image").html(NytData[i].multimedia[i].url)
-
-$("#blue_selected_date").html(NytData[i].pub_date)
-
-// console.log(NytData[i])
-// console.log(NytData[i].snippet)
-// console.log(NytData[i].multimedia[i].url);
-// console.log(NytData[i].pub_date);
+  // console.log(NYTresponse.response.docs);
+  // my var called NytData holds the result/////////////////////
+  // updating
+  $("#blue_selected_article").html(NytData[i].snippet)
 
 
+  var nYT_articleImage = $("<img>");
+  nYT_articleImage.attr('src', "http://www.nytimes.com/" + NytData[i].multimedia[i].url);
+  $("#blue_selected_image").html(nYT_articleImage);
+
+  $("#blue_selected_date").html(NytData[i].pub_date);
+
+  // console.log("http://www.nytimes.com/" + NytData[i].multimedia[i].url);
+  // console.log(NytData[i].pub_date);
+  // console.log(NytData[i])
+  // console.log(NytData[i].snippet)
+
+};
+
+// =======================================for WSJ===============================================
+function displayWSJsection4(i) {
+  console.log("WSJ HAS BEEN CLICKED - where to display div");
 
 
-          // forloop that will display the 5 headers.
+};
 
-             // nYT_articleImage ="http://www.nytimes.com/"+ NYTresponse.response.docs[i].multimedia.url;
-            // console.log(nYT_articleImage);
+//=================================For BB===============================================
 
-// use the link for the readmore section
-            // var nytArticleLink = NYTresponse.response.docs[i].web_url;
-            // console.log(nytArticleLink);
-
-            // var nyt_snipit = NYTresponse.response.docs[i].snippet;
-            // console.log(nyt_snipit);
-            // nYT_articleImage ="http://www.nytimes.com/"+ NYTresponse.response.docs[i].multimedia.url;
-            //  console.log(nYT_articleImage);
+function displayBBsection4(i) {
+  console.log("BB HAS BEEN CLICKED - where do we display this");
 
 
-            // maybe add a class on each list item and use on click function later on and say this.
-
-            // $("#blue_selected_article").html(NytHeader);
-
-
-
-        };
-
-
-// function displayNYTsection4() {
-//
-// $("#blue_selected_article").html("HEELO")
-// });
-
-
-// place this on an onclick event listener
-// section4_reachNYTapi();
+};
