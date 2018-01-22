@@ -8,6 +8,8 @@ var BbHeader
 var nYT_articleImage
 var nyt_snipit
 var NytData // nyt Respo
+var wSjData // WSJ repo holder
+var WSJ_articleImage
 var section4_ArticleLocation ="leftSide" // current div the image is clicked on left side or right side
 // section4_ArticleLocation will be used below in an if else
 
@@ -81,6 +83,8 @@ function reachWSJapi() {
       url: queryURLWSJ,
       method: "GET"
     }).done(function(WSJresponse) {
+      wSjData = WSJresponse.articles;
+      // console.log(wSjData);
       // console.log(WSJresponse);
       // console.log(articles)
       if (WSJresponse.articles.length == 0) {
@@ -186,7 +190,7 @@ $("#breitbartArticle").append(LinktoArticle);
 
 // when user clicks this titleRed in section 3 - the related info for thay section will be poplated in section 4
 
-
+//===========================********=======================Code to make section 4 interavtivr =====******************==================//
 function displayNYTsection4(i) {
 
 
@@ -209,7 +213,7 @@ function displayNYTsection4(i) {
   // console.log(NytData[i])
   // console.log(NytData[i].snippet)
 }
-// if the first condition is true then no need to run the second code 
+// if the first condition is true then no need to run the second code
 else if((currentSelectedArticle=="nyt" && section4_ArticleLocation=="leftSide")|| section4_ArticleLocation=="rightSide") {
 
 
@@ -226,6 +230,25 @@ currentSelectedArticle="nyt"  // resetting the value of currentSelectedArticle
 function displayWSJsection4(i) {
   console.log("WSJ HAS BEEN CLICKED - where to display div");
 
+  // wSjData = WSJresponse.articles;
+  // console.log(wSjData);
+  // // console.log(WSJresponse.articles[i].urlToImage)
+  // console.log(wSjData[i].urlToImage)
+  //   console.log(WSJresponse.articles[i].description)
+  //     console.log(WSJresponse.articles[i].publishedAt)
+
+var WSJ_articleImage = $("<img>");
+WSJ_articleImage.attr('src', wSjData[i].urlToImage);
+
+if((currentSelectedArticle=="WSJ" && section4_ArticleLocation=="rightSide")|| section4_ArticleLocation=="leftSide"){
+
+  section4_ArticleLocation="leftSide";  // resetting it
+  $("#right_selected_article").html(wSjData[i].description)
+  $("#right_selected_image").html(WSJ_articleImage);
+  $("#right_selected_date").html(wSjData[i].publishedAt);
+
+}
+currentSelectedArticle="WSJ"
 
 };
 
@@ -233,6 +256,5 @@ function displayWSJsection4(i) {
 
 function displayBBsection4(i) {
   console.log("BB HAS BEEN CLICKED - where do we display this");
-
 
 };
