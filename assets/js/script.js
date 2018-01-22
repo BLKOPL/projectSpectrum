@@ -8,9 +8,12 @@ var BbHeader
 var nYT_articleImage
 var nyt_snipit
 var NytData // nyt Respo
+var section4_ArticleLocation ="leftSide" // current div the image is clicked on left side or right side
+// section4_ArticleLocation will be used below in an if else
 
-var currentDiv // current div the image is clicked on
 
+// the below var is to make the next click on the title to be appended to the left/right section based on what was clicked first
+var currentSelectedArticle=""
 
 
 function reachNYTapi() {
@@ -78,7 +81,7 @@ function reachWSJapi() {
       url: queryURLWSJ,
       method: "GET"
     }).done(function(WSJresponse) {
-      console.log(WSJresponse);
+      // console.log(WSJresponse);
       // console.log(articles)
       if (WSJresponse.articles.length == 0) {
         alert(" display no article on the html for this section")
@@ -185,27 +188,40 @@ $("#breitbartArticle").append(LinktoArticle);
 
 
 function displayNYTsection4(i) {
-  console.log("Test")
+
 
   // console.log(NYTresponse.response.docs);
   // my var called NytData holds the result/////////////////////
   // updating
-  $("#blue_selected_article").html(NytData[i].snippet)
-
-
   var nYT_articleImage = $("<img>");
   nYT_articleImage.attr('src', "http://www.nytimes.com/" + NytData[i].multimedia[i].url);
-  $("#blue_selected_image").html(nYT_articleImage);
 
-  $("#blue_selected_date").html(NytData[i].pub_date);
+// where to place the articles in the after the user clicks on one after the other
 
+  if((currentSelectedArticle=="nyt" && section4_ArticleLocation=="rightSide")|| section4_ArticleLocation=="leftSide"){
+
+  $("#left_selected_article").html(NytData[i].snippet)
+  $("#left_selected_image").html(nYT_articleImage);
+  $("#left_selected_date").html(NytData[i].pub_date);
+  section4_ArticleLocation="rightSide";
   // console.log("http://www.nytimes.com/" + NytData[i].multimedia[i].url);
   // console.log(NytData[i].pub_date);
   // console.log(NytData[i])
   // console.log(NytData[i].snippet)
+}
+// if the first condition is true then no need to run the second code 
+else if((currentSelectedArticle=="nyt" && section4_ArticleLocation=="leftSide")|| section4_ArticleLocation=="rightSide") {
+
+
+    section4_ArticleLocation="leftSide";  // resetting it
+    $("#right_selected_article").html(NytData[i].snippet)
+    $("#right_selected_image").html(nYT_articleImage);
+    $("#right_selected_date").html(NytData[i].pub_date);
+
+}
+currentSelectedArticle="nyt"  // resetting the value of currentSelectedArticle
 
 };
-
 // =======================================for WSJ===============================================
 function displayWSJsection4(i) {
   console.log("WSJ HAS BEEN CLICKED - where to display div");
