@@ -9,7 +9,9 @@ var nYT_articleImage
 var nyt_snipit
 var NytData // nyt Respo
 var wSjData // WSJ repo holder
+var bB_Data // BB Repo holder
 var WSJ_articleImage
+var bB_articleImage
 var section4_ArticleLocation ="leftSide" // current div the image is clicked on left side or right side
 // section4_ArticleLocation will be used below in an if else
 
@@ -32,6 +34,7 @@ function reachNYTapi() {
       })
       .done(function(NYTresponse) {
         // console.log(NYTresponse.response.docs);
+        // console.log(NYTresponse)
         NytData = NYTresponse.response.docs;
         // console.log(NytData);
 
@@ -134,6 +137,17 @@ function reachBBapi() {
     url: queryURLBreitbart,
     method: "GET"
   }).done(function(BBresponse) {
+
+    // console.log(BBresponse);
+    // console.log(BBresponse.articles);
+  // //   // updating bB_Data to hold the repo
+     bB_Data = BBresponse.articles;
+    console.log(bB_Data);
+
+
+
+
+
 
 
 
@@ -248,13 +262,62 @@ if((currentSelectedArticle=="WSJ" && section4_ArticleLocation=="rightSide")|| se
   $("#right_selected_date").html(wSjData[i].publishedAt);
 
 }
-currentSelectedArticle="WSJ"
+
+
+// if the first condition is true then no need to run the second code
+else if((currentSelectedArticle=="WSJ" && section4_ArticleLocation=="leftSide")|| section4_ArticleLocation=="rightSide") {
+
+
+    section4_ArticleLocation="leftSide";  // resetting it
+    $("#right_selected_article").html(wSjData[i].description)
+    $("#right_selected_image").html(WSJ_articleImage);
+    $("#right_selected_date").html(wSjData[i].publishedAt);
+
+}
+currentSelectedArticle="WSJ"  // resetting the value of currentSelectedArticle
 
 };
-
 //=================================For BB===============================================
 
 function displayBBsection4(i) {
   console.log("BB HAS BEEN CLICKED - where do we display this");
+
+  console.log(bB_Data); // the whole response
+  console.log(bB_Data[i].title)  // titile
+  console.log(bB_Data[i].description) // description
+  console.log(bB_Data[i].publishedAt) // publication
+  console.log(bB_Data[i].urlToImage)  // url image
+  console.log(bB_Data[i].url) // read more link
+
+
+
+
+  var bB_articleImage = $("<img>");
+  bB_articleImage.attr('src',bB_Data[i].urlToImage);
+
+  if((currentSelectedArticle=="bb" && section4_ArticleLocation=="rightSide")|| section4_ArticleLocation=="leftSide"){
+
+  section4_ArticleLocation="leftSide";  // resetting it
+  $("#right_selected_article").html(bB_Data[i].description)
+  $("#right_selected_image").html(bB_articleImage);
+  $("#right_selected_date").html(bB_Data[i].publishedAt);
+
+  }
+
+
+  // if the first condition is true then no need to run the second code
+  else if((currentSelectedArticle=="bb" && section4_ArticleLocation=="leftSide")|| section4_ArticleLocation=="rightSide") {
+
+
+    section4_ArticleLocation="leftSide";  // resetting it
+    $("#right_selected_article").html(bB_Data[i].description)
+    $("#right_selected_image").html(bB_articleImage);
+    $("#right_selected_date").html(bB_Data[i].publishedAt);
+
+  }
+  currentSelectedArticle="bb"  // resetting the value of currentSelectedArticle
+
+
+
 
 };
