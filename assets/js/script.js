@@ -36,7 +36,7 @@ function reachNYTapi() {
         // console.log(NYTresponse.response.docs);
         // console.log(NYTresponse)
         NytData = NYTresponse.response.docs;
-        // console.log(NytData);
+        // console.log(NytData[i].web_url);
 
         // forloop that will display the 5 headers.
         $("#display-blue-article").empty();
@@ -87,8 +87,8 @@ function reachWSJapi() {
       method: "GET"
     }).done(function(WSJresponse) {
       wSjData = WSJresponse.articles;
+
       // console.log(wSjData);
-      // console.log(WSJresponse);
       // console.log(articles)
       if (WSJresponse.articles.length == 0) {
         alert(" display no article on the html for this section")
@@ -143,12 +143,6 @@ function reachBBapi() {
   // //   // updating bB_Data to hold the repo
      bB_Data = BBresponse.articles;
     console.log(bB_Data);
-
-
-
-
-
-
 
 
     //to dynamically create article list
@@ -221,6 +215,10 @@ function displayNYTsection4(i) {
   $("#left_selected_article").html(NytData[i].snippet)
   $("#left_selected_image").html(nYT_articleImage);
   $("#left_selected_date").html(NytData[i].pub_date);
+  $("#left_read_more").html(NytData[i].web_url);
+  //NytData[i].web_url
+
+
   section4_ArticleLocation="rightSide";
   // console.log("http://www.nytimes.com/" + NytData[i].multimedia[i].url);
   // console.log(NytData[i].pub_date);
@@ -235,6 +233,7 @@ else if((currentSelectedArticle=="nyt" && section4_ArticleLocation=="leftSide")|
     $("#right_selected_article").html(NytData[i].snippet)
     $("#right_selected_image").html(nYT_articleImage);
     $("#right_selected_date").html(NytData[i].pub_date);
+    $("#right_read_more").html(NytData[i].web_url);
 
 }
 currentSelectedArticle="nyt"  // resetting the value of currentSelectedArticle
@@ -257,9 +256,10 @@ WSJ_articleImage.attr('src', wSjData[i].urlToImage);
 if((currentSelectedArticle=="WSJ" && section4_ArticleLocation=="rightSide")|| section4_ArticleLocation=="leftSide"){
 
   section4_ArticleLocation="leftSide";  // resetting it
-  $("#right_selected_article").html(wSjData[i].description)
-  $("#right_selected_image").html(WSJ_articleImage);
-  $("#right_selected_date").html(wSjData[i].publishedAt);
+  $("#left_selected_article").html(wSjData[i].description)
+  $("#left_selected_article").html(WSJ_articleImage);
+  $("#left_selected_article").html(wSjData[i].publishedAt);
+    $("#left_selected_article").html(wSjData[i].url);
 
 }
 
@@ -272,6 +272,7 @@ else if((currentSelectedArticle=="WSJ" && section4_ArticleLocation=="leftSide")|
     $("#right_selected_article").html(wSjData[i].description)
     $("#right_selected_image").html(WSJ_articleImage);
     $("#right_selected_date").html(wSjData[i].publishedAt);
+        $("#right_read_more").html(wSjData[i].url);
 
 }
 currentSelectedArticle="WSJ"  // resetting the value of currentSelectedArticle
@@ -281,7 +282,7 @@ currentSelectedArticle="WSJ"  // resetting the value of currentSelectedArticle
 
 function displayBBsection4(i) {
   console.log("BB HAS BEEN CLICKED - where do we display this");
-
+  //
   console.log(bB_Data); // the whole response
   console.log(bB_Data[i].title)  // titile
   console.log(bB_Data[i].description) // description
@@ -298,10 +299,10 @@ function displayBBsection4(i) {
   if((currentSelectedArticle=="bb" && section4_ArticleLocation=="rightSide")|| section4_ArticleLocation=="leftSide"){
 
   section4_ArticleLocation="leftSide";  // resetting it
-  $("#right_selected_article").html(bB_Data[i].description)
-  $("#right_selected_image").html(bB_articleImage);
-  $("#right_selected_date").html(bB_Data[i].publishedAt);
-
+  $("#left_selected_article").html(bB_Data[i].description)
+  $("#left_selected_article").html(bB_articleImage);
+  $("#left_selected_article").html(bB_Data[i].publishedAt);
+  $("#left_selected_article").html(bB_Data[i].url);
   }
 
 
@@ -313,6 +314,7 @@ function displayBBsection4(i) {
     $("#right_selected_article").html(bB_Data[i].description)
     $("#right_selected_image").html(bB_articleImage);
     $("#right_selected_date").html(bB_Data[i].publishedAt);
+    $("#right_selected_date").html(bB_Data[i].url);
 
   }
   currentSelectedArticle="bb"  // resetting the value of currentSelectedArticle
