@@ -5,20 +5,23 @@
     <title>Spectrum</title>
 
 
-    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
   <body>
 
 
-<div class=" float-md-center">
+<div class="float-md-center">
         <h1 class="display-3">Spectrum</h1>
 </div>
 
+
+<div class="container">
+
+</div>
 <form>
   <div class="form-group">
     <!-- <label for="formLabel">"label"</label> -->
@@ -29,15 +32,20 @@
 
 <button type="submit" id="submitBtn" class="btn btn-primary submit">Submit</button>
 
-<div class="card float-md-center" id="recentsearches">
-  <div class="card-body" id="keywords">
-    <h4 class="card-title">Recent Searches:</h4>
-    <a href="#" class="card-link">"Article Link"</a>
-    <a href="#" class="card-link">"Article Link"</a>
+<div class="container" id="recentsearches">
+    <div class="col">
+      <div class="row">
+      <!-- <h4 class="card-title">Recent Searches</h4> -->
+    <div id="keywords">
+        <a href="#" class="card-link">"Article Link"</a>
+        <a href="#" class="card-link">"Article Link"</a>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="container spectrum">
+
+<div class="spectrum">
   <div class="row">
     <div class="col">
   <img src="assets/images/spectrum.png">
@@ -45,52 +53,145 @@
 </div>
 </div>
 
+<!-- Carousel
+<div class="your-class">
+  <div>your content</div>
+  <div>your content</div>
+  <div>your content</div>
+</div> -->
+
+
+
 <div class="card-deck">
-  <div class="card">
-   <div class="card-body text-primary" id="blue-1">
-     <h4 class="card-title">New York Times</h4>
-      <p class="card-text"><small class="text-muted">"Insert Date and Time of Article"</small></p>
-      <div id="display-blue-article" class="card-body"></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-body text-primary" id="neutral">
-      <h4 class="card-title">Wall Street Journal</h4>
-      <p class="card-text"><small class="text-muted">"Insert Date and Time of Article"</small></p>
-      <div id="display-neutral-article" class="card-body"></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-body text-primary" id="red-1">
-      <h4 class="card-title">Brietbart News Network</h4>
-      <p class="card-text"><small class="text-muted">"Insert Date and Time of Article"</small></p>
-      <div id="display-red-article" class="card-body"></div>
-    </div>
-  </div>
+ <div class="card">
+  <div class="card-body text-primary" id="blue-1">
+    <h4 class="card-title">New York Times</h4>
+<hr>
+    <ul class="list-group">
+      <li class="list-group-item"></li>
+      <li class="list-group-item"></li>
+      <li class="list-group-item"></li>
+      <li class="list-group-item"></li>
+      <li class="list-group-item"></li>
+    </ul>
+   </div>
 </div>
 
-<table class="table">
-<tbody>
-    <tr class="table-active">
-      <td>New York Times</td>
-      <td>Wall Street Journal</td>
-      <td>Brietbart News Network</td>
-    </tr>
- </tbody>
-</table>
+ <div class="card">
+   <div class="card-body text-primary" id="neutral">
+     <h4 class="card-title">Wall Street Journal</h4>
+<hr>
+   <ul class="list-group">
+       <li class="list-group-item"></li>
+       <li class="list-group-item"></li>
+       <li class="list-group-item"></li>
+       <li class="list-group-item"></li>
+       <li class="list-group-item"></li>
+     </ul>
+   </div>
+ </div>
+
+
+ <div class="card">
+   <div class="card-body text-primary" id="red-1">
+     <h4 class="card-title">Brietbart News </h4>
+<hr>
+     <ul class="list-group">
+       <li class="list-group-item"></li>
+       <li class="list-group-item"></li>
+       <li class="list-group-item"></li>
+       <li class="list-group-item"></li>
+       <li class="list-group-item"></li>
+     </ul>
+
+   </div>
+ </div>
+</div>
+
+<!-- <div class="card mb-3">
+  <h3 class="card-header">Card header</h3>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+  </div>
+  <img style="height: 200px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image">
+  <div class="card-body">
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Cras justo odio</li>
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div> -->
+
+
+<!-- <div class="card mb-3">
+  <h3 class="card-header">Card header</h3>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+  </div>
+  <img style="height: 200px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image">
+  <div class="card-body">
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Cras justo odio</li>
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div> -->
+
+<div class="container">
+<div class="row ">
+<div class="col-6 card">
+
+  <div>
+      <div id="left_selected_article"></div>
+      <div id="left_selected_image"></div>
+      <div id="left_selected_date"></div>
+      <div id="left_read_more"> </div>
+   </div>
+
+</div>
+
+<div class="col-6 card">
+
+  <div id="right_selected_article"></div>
+  <div id="right_selected_image"></div>
+  <div id="right_selected_date"></div>
+  <div id="right_read_more"> </div>
+
+</div>
+</div>
+</div>
+
 
 
 <footer class="footer">
-  <div class="container">
-  <span>Copyright &copy; 2018</span>
-  </div>
+<div class="container">
+<span>Copyright &copy; 2018 | Bezawit Teferi | María Seneca | Li Chien | Amber Runge</span>
+</div>
 </footer>
 
 
-<!-- <script src="assets/js/jquery.min.js"></script> -->
-<script type="text/javascript" src="assets/js/script.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 
   </body>
