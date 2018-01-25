@@ -172,18 +172,162 @@ function reachBBapi() {
 
 }
 
-// //////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+/////////////////////////////////////////START OF LI'S SECTION//////////////////////////////////////////
+
 
 
 //when user clicks submit////////////////////////////
-$("#submitBtn").on("click", function(event) {
-  event.preventDefault();
+$("#submitBtn").on("click", function(event){
 
-  reachNYTapi();
-  reachWSJapi();
-  reachBBapi();
-
+       event.preventDefault();
+       reachNYTapi();
+       reachWSJapi();
+       reachBBapi();
+       keywordArray.push(userInput);
+       console.log(keywordArray);
+       createButton();
 });
+
+//when user presses enter////////////////////////////
+$("#searchBar").keypress(function(event) {
+
+   if (event.which == 13) {
+       event.preventDefault();
+       reachNYTapi();
+       reachWSJapi();
+       reachBBapi();
+       keywordArray.push(userInput);
+       console.log(keywordArray);
+       createButton();
+   }
+});
+
+//when user clicks a keyword button////////////////////////////
+$(".previous-searches").on("click", function(event){
+
+       reachNYTapi();
+       reachWSJapi();
+       reachBBapi();
+       keywordArray.push(userInput);
+       console.log(keywordArray);
+       createButton();
+});
+
+
+
+/////create buttons for section II div
+var keywordArray = [];
+
+function createButton() { 
+        $('#keywords').empty()
+        for (i = 0; i < keywordArray.length; i++) {
+          $('.center-slider').html('<div><button class="previous-searches">' + userInput + '</button></div>')
+          // localStorage.setItem("keywords", JSON.stringify(keywordArray[i]));
+          // var storedKeywords = JSON.parse(localStorage.getItem("keywords"));
+        }
+       };
+
+
+
+
+
+
+
+
+
+
+// ///////////FIREBASE DATA/////////////
+
+//   // Initialize Firebase
+//   var config = {
+//     apiKey: "AIzaSyAtpJYe9s2DVVwRHjrR6yrjL6-n9V2j_6k",
+//     authDomain: "train-schedule-gwhw7.firebaseapp.com",
+//     databaseURL: "https://train-schedule-gwhw7.firebaseio.com",
+//     projectId: "train-schedule-gwhw7",
+//     storageBucket: "train-schedule-gwhw7.appspot.com",
+//     messagingSenderId: "164648736215"
+//   };
+//   firebase.initializeApp(config);
+
+// var database = firebase.database();
+
+
+
+// //SETTING DATA TO STORE IN FIREBASE
+// var ref = database.ref('keywords')
+// console.log(ref)
+
+// //store a path into firebase with a key and value
+// function writeUserData(keyword) {
+//   ref.set({
+//     balh: keyword
+//   });
+// }
+
+
+// //GETTING DATA FROM FIREBASE TO POPULATE SECTION II
+// ref.on('value', gotData, errData)
+
+// function gotData(keyword) {
+
+// //the keyword just searched
+// var showData = keyword.val()
+// console.log(JSON.stringify(showData))
+
+// //an array we can put the keywords in
+// var keys = Object.values(keyword)
+// console.log(keys)
+
+// //push the keyword just searched to the array
+// keys.push(showData)
+
+
+// //for loop that goes through the keys array
+// for (i = 0; i < keys.length; i++) {
+//   console.log(keys[i])
+//   var obj = JSON.stringify(showData)
+// //try to put obj variable in the new button so we can show the most recently searched keyword
+//   var createButton = $('.center-slider').html('<div><button class="previous-searches">' + userInput + '</button></div>')
+//   createButton.parent()
+// }
+// }
+
+// function errData(err) {
+//   console.log('theres an error boiii')
+
+// }
+
+// ///////////END OF FIREBASE DATA/////////////
+
+
+
+
+
+
+
+/////////////////////////////////////////END OF LI'S SECTION//////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 $("#nytArticle").append(LinktoArticle);
