@@ -289,17 +289,49 @@ function displayBBsection4(i) {
   firebase.initializeApp(config);
 
 var database = firebase.database();
+
+
+
+//SETTING DATA TO STORE IN FIREBASE
 var ref = database.ref('keywords')
 console.log(ref)
 
+//store a path into firebase with a key and value
+function writeUserData(keyword) {
+  ref.set({
+    balh: keyword
+  });
+}
 
+
+
+
+
+//GETTING DATA FROM FIREBASE TO POPULATE SECTION II
 ref.on('value', gotData, errData)
 
 function gotData(keyword) {
-  // console.log(data.val())
+
+//the keyword just searched
 var showData = keyword.val()
-console.log(showData)
-$('#thing').append(showData);
+console.log(JSON.stringify(showData))
+
+//an array we can put the keywords in
+var keys = Object.values(keyword)
+console.log(keys)
+
+//push the keyword just searched to the array
+keys.push(showData)
+
+
+//for loop that goes through the keys array
+for (i = 0; i < keys.length; i++) {
+  console.log(keys[i])
+  var obj = JSON.stringify(showData)
+//try to put obj variable in the new button so we can show the most recently searched keyword
+  var createButton = $('#thing').html('<button>' + userInput + '</button>')
+  createButton.parent()
+}
 }
 
 function errData(err) {
@@ -309,36 +341,16 @@ function errData(err) {
 
 
 
-// var ref = database.ref('searched')
-// create function that puts keywords into firebase
 
+/////create buttons for section II div
+var keywordArray = [];
 
-function writeUserData(keyword) {
-  firebase.database().ref('keywords').set({
-    keywords: keyword
-  });
-}
-
-// function writeUserData() {
-//   var data = {
-//     searched: keywords
-//   }
-//   console.log(data)
-//   var ref = database.ref('searched')
-//   ref.push(data)
-
-// }
-
-
-
-////getting data//////
-
-
-
-// console.log(ref.path.o)
-
-
-
+function createButton() { 
+        $('#keywords').empty()
+        for (i = 0; i < keywordArray.length; i++) {
+          $('#keywords').append('<button class="previous-searches">' + keywordArray[i] + '</button>')
+        }
+       };
 
 
 
@@ -348,26 +360,40 @@ function writeUserData(keyword) {
 
 //when user clicks submit////////////////////////////
 $("#submitBtn").on("click", function(event){
-event.preventDefault();
 
-reachNYTapi();
-reachWSJapi();
-reachBBapi();
-
-//call the function that puts keywords into firebase
-writeUserData(userInput)
-  console.log(writeUserData(userInput));
-  console.log(userInput);
-
-
-
+       event.preventDefault();
+       reachNYTapi();
+       reachWSJapi();
+       reachBBapi();
+       keywordArray.push(userInput);
+       console.log(keywordArray);
+       createButton();
 });
 
+//when user presses enter////////////////////////////
+$("#searchBar").keypress(function(event) {
 
+   if (event.which == 13) {
+       event.preventDefault();
+       reachNYTapi();
+       reachWSJapi();
+       reachBBapi();
+       keywordArray.push(userInput);
+       console.log(keywordArray);
+       createButton();
+   }
+});
 
+//when user clicks a keyword button////////////////////////////
+$(".previous-searches").on("click", function(event){
 
-
-
+       reachNYTapi();
+       reachWSJapi();
+       reachBBapi();
+       keywordArray.push(userInput);
+       console.log(keywordArray);
+       createButton();
+});
 
 
 
