@@ -48,6 +48,7 @@ function reachNYTapi() {
           // var nytArticleLink = NYTresponse.response.docs[i].web_url;
           // console.log(nytArticleTitles);
           var nytArticleTitles = NytData[i].headline.main;
+          // console.log(nytArticleTitles)
           // console.log(NytData[i].headline.main);
           // date and time //
           // var publishedAt = NYTresponse.response.docs[i].pub_date
@@ -98,8 +99,9 @@ function reachWSJapi() {
         $("#display-neutral-article").empty();
 
         for (i = 0; i < 5; i++) {
-          var wsjArticleTitles = WSJresponse.articles[i].title;
-          // console.log(wsjArticleTitles);
+          var wsjArticleTitles = wSjData[i].title;
+          console.log(wsjArticleTitles);
+
 
           var wsjArticleLink = WSJresponse.articles[i].url;
 
@@ -150,7 +152,7 @@ function reachBBapi() {
 
     for (i = 0; i < 5; i++) {
       var bbArticleTitles = BBresponse.articles[i].title;
-      console.log(bbArticleTitles);
+      // console.log(bbArticleTitles);
 
       var bbArticleLink = BBresponse.articles[i].url;
 
@@ -253,13 +255,17 @@ function createButton() {
 
 //===========================********=======================Code to make section 4 interavtivr =====******************==================//
 function displayNYTsection4(i) {
-  // console.log(NYTresponse.response.docs);
+  console.log(NYTresponse.response.docs);
   var nYT_articleImage = $("<img>");
   nYT_articleImage.attr('src', "http://www.nytimes.com/" + NytData[i].multimedia[i].url);
 
 // where to place the articles in the after the user clicks on one after the other
   if((currentSelectedArticle=="nyt" && section4_ArticleLocation=="rightSide")|| section4_ArticleLocation=="leftSide"){
 
+console.log("IF ELSE IS WORKING")
+// //NytData[i].headline.main
+// "left_selected_title"
+  $("#left_selected_title").html(NytData[i].headline.main)
   $("#left_selected_article").html(NytData[i].snippet)
   $("#left_selected_image").html(nYT_articleImage);
   $("#left_selected_date").html(NytData[i].pub_date);
@@ -276,6 +282,7 @@ else if((currentSelectedArticle=="nyt" && section4_ArticleLocation=="leftSide")|
 
 
     section4_ArticleLocation="leftSide";  // resetting it
+    $("#right_selected_title").html(NytData[i].headline.main)
     $("#right_selected_article").html(NytData[i].snippet)
     $("#right_selected_image").html(nYT_articleImage);
     $("#right_selected_date").html(NytData[i].pub_date);
@@ -289,7 +296,7 @@ currentSelectedArticle="nyt"  // resetting the value of currentSelectedArticle
 };
 // =======================================for WSJ===============================================
 function displayWSJsection4(i) {
-  console.log("WSJ HAS BEEN CLICKED - where to display div");
+  // console.log("WSJ HAS BEEN CLICKED - where to display div");
 
 var WSJ_articleImage = $("<img>");
 WSJ_articleImage.attr('src', wSjData[i].urlToImage);
@@ -297,11 +304,13 @@ WSJ_articleImage.attr('src', wSjData[i].urlToImage);
 if((currentSelectedArticle=="WSJ" && section4_ArticleLocation=="rightSide")|| section4_ArticleLocation=="leftSide"){
 
   section4_ArticleLocation="leftSide";  // resetting it
+    $("#left_selected_title").html(wSjData[i].title)
   $("#left_selected_article").html(wSjData[i].description)
   $("#left_selected_image").html(WSJ_articleImage);
   $("#left_selected_date").html(wSjData[i].publishedAt);
     $("#left_read_more").html('<a href="' + wSjData[i].url + '" target="_blank">' + 'Read Me' + '</a>');
 
+//WSJresponse.articles[i].title
 
 }
 
@@ -311,6 +320,7 @@ else if((currentSelectedArticle=="WSJ" && section4_ArticleLocation=="leftSide")|
 
 
     section4_ArticleLocation="leftSide";  // resetting it
+    $("#right_selected_title").html(wSjData[i].title)
     $("#right_selected_article").html(wSjData[i].description)
     $("#right_selected_image").html(WSJ_articleImage);
     $("#right_selected_date").html(wSjData[i].publishedAt);
@@ -329,10 +339,10 @@ function displayBBsection4(i) {
   //
   // console.log(bB_Data); // the whole response
   console.log(bB_Data[i].title)  // titile
-  console.log(bB_Data[i].description) // description
-  console.log(bB_Data[i].publishedAt) // publication
-  console.log(bB_Data[i].urlToImage)  // url image
-  console.log(bB_Data[i].url) // read more link
+  // console.log(bB_Data[i].description) // description
+  // console.log(bB_Data[i].publishedAt) // publication
+  // console.log(bB_Data[i].urlToImage)  // url image
+  // console.log(bB_Data[i].url) // read more link
 
 
   var bB_articleImage = $("<img>");
@@ -343,6 +353,7 @@ function displayBBsection4(i) {
   if((currentSelectedArticle=="bb" && section4_ArticleLocation=="rightSide")|| section4_ArticleLocation=="leftSide"){
 
   section4_ArticleLocation="leftSide";  // resetting it
+    $("#left_selected_title").html(bB_Data[i].title)
   $("#left_selected_article").html(bB_Data[i].description)
   $("#left_selected_image").html(bB_articleImage);
   $("#left_selected_date").html(bB_Data[i].publishedAt);
@@ -355,11 +366,11 @@ function displayBBsection4(i) {
 
 
     section4_ArticleLocation="leftSide";  // resetting it
-    $("#right_selected_article").html(bB_Data[i].description)
+    $("#right_selected_article").html(bB_Data[i].title)
     $("#right_selected_image").html(bB_articleImage);
     $("#right_selected_date").html(bB_Data[i].publishedAt);
     $("#right_read_more").html('<a href="' + bB_Data[i].url + '" target="_blank">' + 'Read Me' + '</a>');
-
+// $("#right_selected_title").html(wSjData[i].title)
 
 
   }
