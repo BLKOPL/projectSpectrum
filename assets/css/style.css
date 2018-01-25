@@ -163,3 +163,23 @@ footer {
 	opacity: 1;
 }
 /*//////////////////////////////////// */
+
+/*MARIA WUZ HERE*/
+
+.card-body li.Nyt_article_list:hover
+{
+  background-color: blue;
+	color: white;
+}
+
+.card-body li.Wsj_article_list:hover
+{
+  background-color: purple;
+	color: white;
+}
+
+.card-body li.Bb_article_list:hover
+{
+  background-color: red;
+	color: white;
+}
