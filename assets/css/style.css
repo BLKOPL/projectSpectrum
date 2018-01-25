@@ -170,16 +170,19 @@ footer {
 {
   background-color: blue;
 	color: white;
+	text-decoration: none;
 }
 
 .card-body li.Wsj_article_list:hover
 {
   background-color: purple;
 	color: white;
+	text-decoration: none;
 }
 
 .card-body li.Bb_article_list:hover
 {
   background-color: red;
 	color: white;
+	text-decoration: none;
 }

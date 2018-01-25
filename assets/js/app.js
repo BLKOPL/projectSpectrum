@@ -15,7 +15,7 @@ var bB_articleImage
 var section4_ArticleLocation ="leftSide" // current div the image is clicked on left side or right side
 // section4_ArticleLocation will be used below in an if else
 
-
+console.log(bB_Data);
 // the below var is to make the next click on the title to be appended to the left/right section based on what was clicked first
 var currentSelectedArticle=""
 
@@ -206,7 +206,7 @@ $("#searchBar").keypress(function(event) {
       console.log(keywordArray);
       createButton();
       $('#searchBar').val('')
-      $('.display').removeClass('display')      
+      $('.display').removeClass('display')
   }
 });
 
