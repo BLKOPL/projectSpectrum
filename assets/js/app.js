@@ -33,7 +33,7 @@ function reachNYTapi() {
         method: "GET"
       })
       .done(function(NYTresponse) {
-        // console.log(NYTresponse.response.docs);
+        console.log(NYTresponse.response.docs);
         // console.log(NYTresponse)
         NytData = NYTresponse.response.docs;
         // console.log(NytData[i].web_url);
@@ -48,7 +48,7 @@ function reachNYTapi() {
           // var nytArticleLink = NYTresponse.response.docs[i].web_url;
           // console.log(nytArticleTitles);
           var nytArticleTitles = NytData[i].headline.main;
-          // console.log(nytArticleTitles)
+          console.log(nytArticleTitles)
           // console.log(NytData[i].headline.main);
           // date and time //
           // var publishedAt = NYTresponse.response.docs[i].pub_date
@@ -62,7 +62,7 @@ function reachNYTapi() {
           NytHeader = "<a onClick='displayNYTsection4(" + i + ")' href='#' ><li class='Nyt_article_list list-group-item'>" + nytArticleTitles + "</li></a>";
 
           $("#display-blue-article").append(NytHeader);
-
+console.log("NYT API WORKING")
         };
 
       });
@@ -255,7 +255,7 @@ function createButton() {
 
 //===========================********=======================Code to make section 4 interavtivr =====******************==================//
 function displayNYTsection4(i) {
-  console.log(NYTresponse.response.docs);
+  // console.log(NYTresponse.response.docs);
   var nYT_articleImage = $("<img>");
   nYT_articleImage.attr('src', "http://www.nytimes.com/" + NytData[i].multimedia[i].url);
 
