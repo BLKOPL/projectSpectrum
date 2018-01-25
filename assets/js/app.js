@@ -23,7 +23,7 @@ var currentSelectedArticle=""
 function reachNYTapi() {
 
   userInput = $("#searchBar").val().trim();
-  if (userInput) {
+  // if (userInput) {
     // If search item is Nan this will not let the user click submit
 
     var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=9bbd8167715c47cf98ffd217a669c995&sort=newest&q=" + userInput;
@@ -45,12 +45,12 @@ function reachNYTapi() {
 
           // article link for read more
           // console.log(nytArticleLink);
-          var nytArticleLink = NYTresponse.response.docs[i].web_url;
+          // var nytArticleLink = NYTresponse.response.docs[i].web_url;
           // console.log(nytArticleTitles);
-          var nytArticleTitles = NYTresponse.response.docs[i].headline.main;
-
+          var nytArticleTitles = NytData[i].headline.main;
+          console.log(NytData[i].headline.main);
           // date and time //
-          var publishedAt = NYTresponse.response.docs[i].pub_date
+          // var publishedAt = NYTresponse.response.docs[i].pub_date
 
           // console.log(nYT_articleImage);
 
@@ -65,14 +65,14 @@ function reachNYTapi() {
         };
 
       });
-  }
+  // }
 }
 
 // //API call for WSJ////////////////////////////////////
 
 function reachWSJapi() {
   userInput = $("#searchBar").val().trim();
-  if (userInput) {
+  // if (userInput) {
 
     var queryURLWSJ = 'https://newsapi.org/v2/everything?' +
       'q=' + userInput + '&' +
@@ -90,9 +90,9 @@ function reachWSJapi() {
 
       // console.log(wSjData);
       // console.log(articles)
-      if (WSJresponse.articles.length == 0) {
-        alert(" display no article on the html for this section")
-      } else {
+      // if (WSJresponse.articles.length == 0) {
+      //   alert(" display no article on the html for this section")
+      // } else {
 
         //to dynamically create article list
         $("#display-neutral-article").empty();
@@ -114,10 +114,10 @@ function reachWSJapi() {
           $("#display-neutral-article").append(WsjHeader);
 
         }
-      }
+      // }
 
     })
-  }
+// }
 }
 // // // ///////////////////////////////////////////////////////
 
@@ -141,8 +141,8 @@ function reachBBapi() {
     // console.log(BBresponse);
     // console.log(BBresponse.articles);
   // //   // updating bB_Data to hold the repo
-     bB_Data = BBresponse.articles;
-    console.log(bB_Data);
+    //  bB_Data = BBresponse.articles;
+    // console.log(bB_Data);
 
 
     //to dynamically create article list
@@ -168,22 +168,75 @@ function reachBBapi() {
 
 
     }
-  })
+  });
 
-}
+};
 
 // //////////////////////////////////////////////////////
 
 
+////////////////////////////////////////START OF LI'S SECTION//////////////////////////////////////////
+
+
+
+
 //when user clicks submit////////////////////////////
-$("#submitBtn").on("click", function(event) {
-  event.preventDefault();
+$("#submitBtn").on("click", function(event){
 
-  reachNYTapi();
-  reachWSJapi();
-  reachBBapi();
-
+      event.preventDefault();
+      reachNYTapi();
+      reachWSJapi();
+      reachBBapi();
+      keywordArray.push(userInput);
+      console.log(keywordArray);
+      createButton();
+      $('#searchBar').val('')
+      $('.display').removeClass('display')
 });
+
+//when user presses enter////////////////////////////
+$("#searchBar").keypress(function(event) {
+
+  if (event.which == 13) {
+      event.preventDefault();
+      reachNYTapi();
+      reachWSJapi();
+      reachBBapi();
+      keywordArray.push(userInput);
+      console.log(keywordArray);
+      createButton();
+      $('#searchBar').val('')
+      $('.display').removeClass('display')      
+  }
+});
+
+// //when user clicks a keyword button////////////////////////////
+// $(".previous-searches").on("click", function(event){
+//
+//
+//       reachNYTapi();
+//       reachWSJapi();
+//       reachBBapi();
+//       keywordArray.push(userInput);
+//       console.log(keywordArray);
+//       createButton();
+//       console.log('sup');
+// });
+
+
+
+
+/////create buttons for section II div
+var keywordArray = [];
+
+function createButton() {
+       $('.center-slider').empty();
+       for (i = 0; i < keywordArray.length; i++) {
+         $('.center-slider').append('<div><button class="previous-searches" onclick="reachNYTapi();reachWSJapi();reachBBapi();createButton();">' + keywordArray[i] + '</button></div>')
+         // localStorage.setItem("keywords", JSON.stringify(keywordArray[i]));
+         // var storedKeywords = JSON.parse(localStorage.getItem("keywords"));
+       }
+      };
 
 
 $("#nytArticle").append(LinktoArticle);
@@ -247,9 +300,9 @@ if((currentSelectedArticle=="WSJ" && section4_ArticleLocation=="rightSide")|| se
 
   section4_ArticleLocation="leftSide";  // resetting it
   $("#left_selected_article").html(wSjData[i].description)
-  $("#left_selected_article").html(WSJ_articleImage);
-  $("#left_selected_article").html(wSjData[i].publishedAt);
-    $("#left_selected_article").html(wSjData[i].url);
+  $("#left_selected_image").html(WSJ_articleImage);
+  $("#left_selected_date").html(wSjData[i].publishedAt);
+    $("#left_read_more").html(wSjData[i].url);
 
 }
 
@@ -290,9 +343,9 @@ function displayBBsection4(i) {
 
   section4_ArticleLocation="leftSide";  // resetting it
   $("#left_selected_article").html(bB_Data[i].description)
-  $("#left_selected_article").html(bB_articleImage);
-  $("#left_selected_article").html(bB_Data[i].publishedAt);
-  $("#left_selected_article").html(bB_Data[i].url);
+  $("#left_selected_image").html(bB_articleImage);
+  $("#left_selected_date").html(bB_Data[i].publishedAt);
+  $("#left_read_more").html(bB_Data[i].url);
   }
 
 
@@ -304,9 +357,38 @@ function displayBBsection4(i) {
     $("#right_selected_article").html(bB_Data[i].description)
     $("#right_selected_image").html(bB_articleImage);
     $("#right_selected_date").html(bB_Data[i].publishedAt);
-    $("#right_selected_date").html(bB_Data[i].url);
+    $("#right_read_more").html(bB_Data[i].url);
 
   }
   currentSelectedArticle="bb"  // resetting the value of currentSelectedArticle
 
 };
+
+$(document).on('ready', function() {
+  console.log("HI WORLD");
+
+  $(".center").slick({
+    centerPadding: '60px',
+    slidesToShow: 3,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            arrows: true,
+            centerMode: true,
+            centerPadding: '40px',
+            slidesToShow: 3
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            arrows: false,
+            centerMode: true,
+            centerPadding: '40px',
+            slidesToShow: 1
+          }
+        }
+      ]
+    });
+});
