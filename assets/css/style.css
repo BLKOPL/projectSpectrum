@@ -50,15 +50,7 @@ text-shadow: 7px 7px 7px #CCCCCC;
 /* ////////////////////////////////// */
 
 /* SECTION 2 */
-#recentsearches {
-  width: 100%;
-  padding: 10px;
-	margin-top: 15px;
-	margin-bottom: 20px;
-  background: #fff;
-  border: 1px solid #ddd;
-	height: 35px;
-}
+
 
 .card-link {
 	text-align: center;
@@ -79,6 +71,10 @@ img {
 
 /* SECTION 3 */
 
+.display {
+	display: none;
+}
+
 .card-deck {
 	margin: 10px 10px;
 	padding: 20px 0;
@@ -96,13 +92,64 @@ img {
 /*//////////////////////////////////// */
 
 /* SECTION 4 */
-.compareContrast {
+.mb-3 {
 	margin: auto;
 	border-radius: 15px;
 	font-size: 20px;
 	padding: 20px;
 	border: 1px white solid;
+	width: 40%;
 }
+
+#left_selected_image {
+	margin: 2px 2px 2px 2px;
+}
+
+
+
+/* CAROUSEL */
+
+.slider {
+		width: 33%;
+		margin: 100px auto;
+		height: 5px;
+		margin-top: 7px;
+		margin-bottom: 200px;
+}
+
+.slick-slide {
+	/* margin: 2px 2px 2px 2xpx; */
+	transition: all ease-in-out .3s;
+	opacity: .2;
+	padding: 10px;
+}
+
+.slick-slide button {
+	width: 70%;
+	border: solid black;
+	height: 30px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+	color: grey;
+	position: relative;
+	top: 80px;
+}
+
+
+
+.slick-active {
+	opacity: 1;
+}
+
+.slick-current {
+	opacity: 1;
+}
+
+
+
+
 
 footer {
 	position: absolute;

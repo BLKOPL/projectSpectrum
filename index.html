@@ -5,11 +5,14 @@
     <title>Spectrum</title>
 
 
+    <link rel="stylesheet" type="text/css" href="assets/carousel/slick/slickCss/slick.css">
+    <link rel="stylesheet" type="text/css" href="assets/carousel/slick/slickCss/slick-theme.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     </head>
   <body>
 
@@ -33,20 +36,33 @@
 <button type="submit" id="submitBtn" class="btn btn-primary submit">Submit</button>
 
 
-<!-- SECTION 2  -->
+<!-- CAROUSEL -->
+<section class="center-slider">
+    <!-- <div><button class="previous-searches">trump</button></div>
+    <div><button class="previous-searches">shutdown</button></div> -->
 
-<div class="container" id="recentsearches">
-    <div class="col">
-      <div class="row">
-      <!-- <h4 class="card-title">Recent Searches</h4> -->
-    <div id="keywords">
-        <a href="#" class="card-link">"Article Link"</a>
-        <a href="#" class="card-link">"Article Link"</a>
-      </div>
-    </div>
+    <!-- <div>
+    <button class="previous-searches"></button>
   </div>
-</div>
 
+
+  <div>
+    <button class="previous-searches"></button>
+  </div>
+
+    <div>
+    <button class="previous-searches"></button>
+  </div>
+
+  <div>
+  <button class="previous-searches"></button>
+</div> -->
+</section>
+
+
+
+
+<!-- SPECTRUM IMG -->
 
 <div class="spectrum">
   <div class="row">
@@ -58,7 +74,7 @@
 
 
 <!-- SECTION 3  -->
-
+<div class='display'>
 <div class="card-deck">
  <div class="card articles">
   <div class="card-body text-primary" id="blue-1">
@@ -95,10 +111,10 @@
    </div>
  </div>
 </div>
-
+</div>
 <!-- SECTION 4  -->
 
-<div class="container">
+<!-- <div class="container">
 <div class="row ">
 <div class="col-6 card">
 
@@ -120,11 +136,45 @@
 
 </div>
 </div>
+</div> -->
+
+<div class="display">
+<div class="card mb-3">
+  <h3 class="card-header">Card header</h3>
+  <div class="card-body">
+  </div>
+
+  <div id="left_selected_image"></div>
+  <div class="card-body">
+    <p class="card-text" id="left_selected_article"></p>
+  </div>
+  <div class="card-body">
+    <a href="#" class="card-link" id="left_read_more"></a>
+  </div>
+  <div class="card-footer text-muted" id="left_selected_date">
+  </div>
 </div>
 
 
 
 
+<div class="card mb-3">
+  <h3 class="card-header">Card header</h3>
+  <div class="card-body">
+  </div>
+
+  <div id="right_selected_image" style="height: 200px; width: 100%; display: block;"></div>
+  <div class="card-body">
+    <p class="card-text" id="right_selected_article"></p>
+  </div>
+  <div class="card-body">
+    <a href="#" class="card-link" id="right_read_more"></a>
+  </div>
+  <div class="card-footer text-muted" id="right_selected_date">
+  </div>
+</div>
+</div>
+<!-- FOOTER -->
 
 <footer class="footer">
 <div class="container">
@@ -136,6 +186,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="assets/js/app.js"></script>
+<script src="assets/carousel/slick/slickCss/slick.js" type="text/javascript" charset="utf-8"></script>
 
 
   </body>
