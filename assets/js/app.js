@@ -150,7 +150,7 @@ function reachBBapi() {
 
     for (i = 0; i < 5; i++) {
       var bbArticleTitles = BBresponse.articles[i].title;
-      // console.log(bbArticleTitles);
+      console.log(bbArticleTitles);
 
       var bbArticleLink = BBresponse.articles[i].url;
 
@@ -310,4 +310,3 @@ function displayBBsection4(i) {
   currentSelectedArticle="bb"  // resetting the value of currentSelectedArticle
 
 };
-console.log(bB_Data);
