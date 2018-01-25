@@ -48,7 +48,7 @@ function reachNYTapi() {
           // var nytArticleLink = NYTresponse.response.docs[i].web_url;
           // console.log(nytArticleTitles);
           var nytArticleTitles = NytData[i].headline.main;
-          console.log(NytData[i].headline.main);
+          // console.log(NytData[i].headline.main);
           // date and time //
           // var publishedAt = NYTresponse.response.docs[i].pub_date
 
@@ -141,7 +141,7 @@ function reachBBapi() {
     // console.log(BBresponse);
     // console.log(BBresponse.articles);
   // //   // updating bB_Data to hold the repo
-    //  bB_Data = BBresponse.articles;
+     bB_Data = BBresponse.articles;
     // console.log(bB_Data);
 
 
@@ -154,7 +154,7 @@ function reachBBapi() {
 
       var bbArticleLink = BBresponse.articles[i].url;
 
-      // var ArticleImage ="http://www.nytimes.com/"+NYTresponse.response.docs[i].multimedia.url;
+
 
       articleCounter++;
       // maybe add a class on each list item and use on click function later on and say this.
@@ -188,7 +188,7 @@ $("#submitBtn").on("click", function(event){
       reachWSJapi();
       reachBBapi();
       keywordArray.push(userInput);
-      console.log(keywordArray);
+      // console.log(keywordArray);
       createButton();
       $('#searchBar').val('')
       $('.display').removeClass('display')
@@ -203,10 +203,10 @@ $("#searchBar").keypress(function(event) {
       reachWSJapi();
       reachBBapi();
       keywordArray.push(userInput);
-      console.log(keywordArray);
+      // console.log(keywordArray);
       createButton();
       $('#searchBar').val('')
-      $('.display').removeClass('display')      
+      $('.display').removeClass('display')
   }
 });
 
@@ -239,9 +239,9 @@ function createButton() {
       };
 
 
-$("#nytArticle").append(LinktoArticle);
-$("#wsjArticle").append(LinktoArticle);
-$("#breitbartArticle").append(LinktoArticle);
+// $("#nytArticle").append(LinktoArticle);
+// $("#wsjArticle").append(LinktoArticle);
+// $("#breitbartArticle").append(LinktoArticle);
 
 
 
@@ -253,24 +253,20 @@ $("#breitbartArticle").append(LinktoArticle);
 
 //===========================********=======================Code to make section 4 interavtivr =====******************==================//
 function displayNYTsection4(i) {
-
-
   // console.log(NYTresponse.response.docs);
-  // my var called NytData holds the result/////////////////////
-  // updating
   var nYT_articleImage = $("<img>");
   nYT_articleImage.attr('src', "http://www.nytimes.com/" + NytData[i].multimedia[i].url);
 
 // where to place the articles in the after the user clicks on one after the other
-
   if((currentSelectedArticle=="nyt" && section4_ArticleLocation=="rightSide")|| section4_ArticleLocation=="leftSide"){
 
   $("#left_selected_article").html(NytData[i].snippet)
   $("#left_selected_image").html(nYT_articleImage);
   $("#left_selected_date").html(NytData[i].pub_date);
-  $("#left_read_more").html(NytData[i].web_url);
-  //NytData[i].web_url
+  $("#left_read_more").html('<a href="' + NytData[i].web_url + '" target="_blank">' + 'Read Me' + '</a>');
 
+
+  //NytData[i].web_url
 
   section4_ArticleLocation="rightSide";
 
@@ -283,7 +279,9 @@ else if((currentSelectedArticle=="nyt" && section4_ArticleLocation=="leftSide")|
     $("#right_selected_article").html(NytData[i].snippet)
     $("#right_selected_image").html(nYT_articleImage);
     $("#right_selected_date").html(NytData[i].pub_date);
-    $("#right_read_more").html(NytData[i].web_url);
+    $("#right_read_more").html('<a href="' + NytData[i].web_url + '" target="_blank">' + 'Read Me' + '</a>');
+
+
 
 }
 currentSelectedArticle="nyt"  // resetting the value of currentSelectedArticle
@@ -302,7 +300,8 @@ if((currentSelectedArticle=="WSJ" && section4_ArticleLocation=="rightSide")|| se
   $("#left_selected_article").html(wSjData[i].description)
   $("#left_selected_image").html(WSJ_articleImage);
   $("#left_selected_date").html(wSjData[i].publishedAt);
-    $("#left_read_more").html(wSjData[i].url);
+    $("#left_read_more").html('<a href="' + wSjData[i].url + '" target="_blank">' + 'Read Me' + '</a>');
+
 
 }
 
@@ -315,7 +314,9 @@ else if((currentSelectedArticle=="WSJ" && section4_ArticleLocation=="leftSide")|
     $("#right_selected_article").html(wSjData[i].description)
     $("#right_selected_image").html(WSJ_articleImage);
     $("#right_selected_date").html(wSjData[i].publishedAt);
-        $("#right_read_more").html(wSjData[i].url);
+    $("#right_read_more").html('<a href="' + wSjData[i].url + '" target="_blank">' + 'Read Me' + '</a>');
+
+
 
 }
 currentSelectedArticle="WSJ"  // resetting the value of currentSelectedArticle
@@ -326,7 +327,7 @@ currentSelectedArticle="WSJ"  // resetting the value of currentSelectedArticle
 function displayBBsection4(i) {
   console.log("BB HAS BEEN CLICKED - where do we display this");
   //
-  console.log(bB_Data); // the whole response
+  // console.log(bB_Data); // the whole response
   console.log(bB_Data[i].title)  // titile
   console.log(bB_Data[i].description) // description
   console.log(bB_Data[i].publishedAt) // publication
@@ -334,9 +335,9 @@ function displayBBsection4(i) {
   console.log(bB_Data[i].url) // read more link
 
 
-
-
   var bB_articleImage = $("<img>");
+
+
   bB_articleImage.attr('src',bB_Data[i].urlToImage);
 
   if((currentSelectedArticle=="bb" && section4_ArticleLocation=="rightSide")|| section4_ArticleLocation=="leftSide"){
@@ -345,7 +346,7 @@ function displayBBsection4(i) {
   $("#left_selected_article").html(bB_Data[i].description)
   $("#left_selected_image").html(bB_articleImage);
   $("#left_selected_date").html(bB_Data[i].publishedAt);
-  $("#left_read_more").html(bB_Data[i].url);
+  $("#left_read_more").html('<a href="' + bB_Data[i].url + '">' + 'Read Me' + '</a>');
   }
 
 
@@ -357,7 +358,9 @@ function displayBBsection4(i) {
     $("#right_selected_article").html(bB_Data[i].description)
     $("#right_selected_image").html(bB_articleImage);
     $("#right_selected_date").html(bB_Data[i].publishedAt);
-    $("#right_read_more").html(bB_Data[i].url);
+    $("#right_read_more").html('<a href="' + bB_Data[i].url + '" target="_blank">' + 'Read Me' + '</a>');
+
+
 
   }
   currentSelectedArticle="bb"  // resetting the value of currentSelectedArticle
@@ -365,7 +368,7 @@ function displayBBsection4(i) {
 };
 
 $(document).on('ready', function() {
-  console.log("HI WORLD");
+  // console.log("HI WORLD");
 
   $(".center").slick({
     centerPadding: '60px',
