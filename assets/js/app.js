@@ -268,7 +268,7 @@ console.log("IF ELSE IS WORKING")
   $("#left_selected_title").html(NytData[i].headline.main)
   $("#left_selected_article").html(NytData[i].snippet)
   $("#left_selected_image").html(nYT_articleImage);
-  $("#left_selected_date").html(NytData[i].pub_date);
+  $("#left_selected_date").html(moment(NytData[i].pub_date).format("MM/DD/YY"));
   $("#left_read_more").html('<a href="' + NytData[i].web_url + '" target="_blank">' + 'Read Me' + '</a>');
 
 
@@ -285,7 +285,7 @@ else if((currentSelectedArticle=="nyt" && section4_ArticleLocation=="leftSide")|
     $("#right_selected_title").html(NytData[i].headline.main)
     $("#right_selected_article").html(NytData[i].snippet)
     $("#right_selected_image").html(nYT_articleImage);
-    $("#right_selected_date").html(NytData[i].pub_date);
+    $("#right_selected_date").html(moment(NytData[i].pub_date).format("MM/DD/YY"));
     $("#right_read_more").html('<a href="' + NytData[i].web_url + '" target="_blank">' + 'Read Me' + '</a>');
 
 
@@ -307,7 +307,7 @@ if((currentSelectedArticle=="WSJ" && section4_ArticleLocation=="rightSide")|| se
     $("#left_selected_title").html(wSjData[i].title)
   $("#left_selected_article").html(wSjData[i].description)
   $("#left_selected_image").html(WSJ_articleImage);
-  $("#left_selected_date").html(wSjData[i].publishedAt);
+  $("#left_selected_date").html(moment(wSjData[i].publishedAt).format("MM/DD/YY"));
     $("#left_read_more").html('<a href="' + wSjData[i].url + '" target="_blank">' + 'Read Me' + '</a>');
 
 //WSJresponse.articles[i].title
@@ -323,8 +323,9 @@ else if((currentSelectedArticle=="WSJ" && section4_ArticleLocation=="leftSide")|
     $("#right_selected_title").html(wSjData[i].title)
     $("#right_selected_article").html(wSjData[i].description)
     $("#right_selected_image").html(WSJ_articleImage);
-    $("#right_selected_date").html(wSjData[i].publishedAt);
+    $("#right_selected_date").html(moment(wSjData[i].publishedAt).format("MM/DD/YY"));
     $("#right_read_more").html('<a href="' + wSjData[i].url + '" target="_blank">' + 'Read Me' + '</a>');
+
 
 
 
@@ -356,7 +357,7 @@ function displayBBsection4(i) {
     $("#left_selected_title").html(bB_Data[i].title)
   $("#left_selected_article").html(bB_Data[i].description)
   $("#left_selected_image").html(bB_articleImage);
-  $("#left_selected_date").html(bB_Data[i].publishedAt);
+  $("#left_selected_date").html(moment(bB_Data[i].publishedAt).format("MM/DD/YY"));
   $("#left_read_more").html('<a href="' + bB_Data[i].url + '">' + 'Read Me' + '</a>');
   }
 
@@ -368,7 +369,7 @@ function displayBBsection4(i) {
     section4_ArticleLocation="leftSide";  // resetting it
     $("#right_selected_article").html(bB_Data[i].description)
     $("#right_selected_image").html(bB_articleImage);
-    $("#right_selected_date").html(bB_Data[i].publishedAt);
+    $("#right_selected_date").html(moment(bB_Data[i].publishedAt).format("MM/DD/YY"));
     $("#right_read_more").html('<a href="' + bB_Data[i].url + '" target="_blank">' + 'Read Me' + '</a>');
 $("#right_selected_title").html(bB_Data[i].title)
 
