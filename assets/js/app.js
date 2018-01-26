@@ -366,11 +366,11 @@ function displayBBsection4(i) {
 
 
     section4_ArticleLocation="leftSide";  // resetting it
-    $("#right_selected_article").html(bB_Data[i].title)
+    $("#right_selected_article").html(bB_Data[i].description)
     $("#right_selected_image").html(bB_articleImage);
     $("#right_selected_date").html(bB_Data[i].publishedAt);
     $("#right_read_more").html('<a href="' + bB_Data[i].url + '" target="_blank">' + 'Read Me' + '</a>');
-// $("#right_selected_title").html(wSjData[i].title)
+$("#right_selected_title").html(bB_Data[i].title)
 
 
   }
