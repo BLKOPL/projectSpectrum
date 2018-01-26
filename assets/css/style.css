@@ -57,6 +57,11 @@ text-shadow: 7px 7px 7px #CCCCCC;
 }
 
 img {
+	height: 250px;
+	width: 400px;
+}
+
+.political-spectrum {
 	width: 90%;
 	margin: auto;
 	border-radius: 15px;
@@ -66,6 +71,7 @@ img {
 	border: solid grey 1.5px;
 	opacity: .9;
 }
+
 
 /*//////////////////////////////////// */
 
@@ -86,8 +92,26 @@ img {
 	border-radius: 20px;
 }
 
+
 .card-body {
-	margin: 10 10 10 10;
+    margin: 10px 10px 10px 10px;
+}
+
+.card2 {
+    float: right;
+
+}
+
+.card1 {
+    float: left;
+
+}
+
+.mb-3 {
+    width: 40%;
+    margin: 10px 10px 10px 10px;
+    margin-bottom: 30px;
+
 }
 /*//////////////////////////////////// */
 
@@ -102,49 +126,66 @@ img {
 }
 
 #left_selected_image {
+	height: 250px;
 	margin: 2px 2px 2px 2px;
 }
 
+#right_selected_image {
+	height: 250px;
+	margin: 2px 2px 2px 2px;
+}
+
+/* .division {
+	border-style: solid;
+	border-color: black
+	border-width: 2px 0px 2px;
+} */
 
 
 /* CAROUSEL */
 
 .slider {
-		width: 33%;
-		margin: 100px auto;
-		height: 5px;
-		margin-top: 7px;
-		margin-bottom: 200px;
+        width: 20%;
+        margin: 100px auto;
+        height: 5px;
+        margin-top: 7px;
+        margin-bottom: 200px;
 }
 
 .slick-slide {
-	/* margin: 2px 2px 2px 2xpx; */
-	transition: all ease-in-out .3s;
-	opacity: .2;
-	padding: 10px;
+    /* margin: 2px 2px 2px 2xpx; */
+    transition: all ease-in-out .3s;
+    opacity: .2;
+    padding: 5px;
 }
 
 .slick-slide button {
-	width: 70%;
-	border: solid black;
-	height: 30px;
+    width: 50%;
+    border-style: ridge;
+    border-color: black;
+    border-width: small;
+    height: 30px;
+    background-color: #F0F8FF;
+    border-radius: 10px;
+    margin: auto;
 }
 
 .slick-prev:before,
 .slick-next:before {
-	color: grey;
-	position: relative;
-	top: 80px;
+    color: grey;
+    position: relative;
+    right: 50px;
 }
+
 
 
 
 .slick-active {
-	opacity: 1;
+    opacity: 1;
 }
 
 .slick-current {
-	opacity: 1;
+    opacity: 1;
 }
 
 
